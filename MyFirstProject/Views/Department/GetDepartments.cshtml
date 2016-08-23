@@ -1,0 +1,13 @@
+﻿@model IEnumerable<MyFirstProject.Models.Department>
+
+<div class="navbar-collapse collapse">
+    <ul class="nav navbar-nav">
+
+        @foreach (var depts in Model)
+        {
+            <li>
+                @Html.ActionLink(depts.Name,"Details","Department", new {id = depts.DepartmentId}, null) &nbsp;&nbsp;
+            </li>
+        }
+    </ul>
+    </div>

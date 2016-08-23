@@ -1,0 +1,84 @@
+﻿@model MyFirstProject.Models.Student
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Student</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EnrollmentDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EnrollmentDate)
+        </dd>
+        @if (Model.ImagePath != null) { 
+        <dd>
+            <img src="~/images/profile/@Model.ImagePath" width="200px" height="200px"/>
+        </dd>
+        }
+        @if (Model.Picture != null) {
+        <dd>
+            <img src="data:image;base64,@System.Convert.ToBase64String(Model.Picture)" width="200px" height="200px" />
+        </dd>
+        }
+        @if (Model.Picture != null) {
+        <dd>
+            <img src="@Url.Action("GetImage", "Student", new { id = Model.PersonId })" width="200px" height="200px" />
+        </dd>
+        }
+
+
+    </dl>
+</div>
+
+<table class="table">
+    <tr>
+        <th>
+            Course Title
+        </th>
+        <th>
+            Grade
+        </th>
+    </tr>
+
+    @foreach (var item in Model.Enrollments)
+    {
+        <tr>
+            <td>
+                
+                @Html.DisplayFor(modelItem => item.course.CourseName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Grade)
+            </td>
+        </tr>
+    }
+
+</table>
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PersonId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

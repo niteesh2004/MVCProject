@@ -1,0 +1,57 @@
+﻿@model IEnumerable<MyFirstProject.Models.Student>
+@using MyFirstProject.Helpers;
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>                 @*(Display Name , Action Method)*@
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+@using (Html.BeginForm("Search", "Student"))
+{
+    @Html.Editor("SearchBox")
+    <input class="btn btn-info" type="submit" value="Search"/>
+}
+<table class="table">
+    <tr class="success">
+        
+        <th>
+            @*Surname*@
+            @Html.DisplayNameFor(model => model.LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EnrollmentDate)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+           
+            @Html.Truncate(item.LastName, 15)
+            @*@Html.DisplayFor(modelItem => item.LastName)*@
+        </td>
+        <td>
+           @Html.Truncate(item.FirstName, 15)
+            @*@Html.DisplayFor(modelItem => item.FirstName)*@
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EnrollmentDate)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.PersonId}) |
+            @Html.ActionLink("Details", "Details", new { id=item.PersonId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.PersonId })
+        </td>
+    </tr>
+}
+
+</table>

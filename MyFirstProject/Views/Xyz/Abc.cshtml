@@ -1,0 +1,13 @@
+﻿@model IEnumerable<MyFirstProject.Models.Student>
+
+@{
+    ViewBag.Title = "Abc Page";
+}
+
+<h2>Hey this is the Abc.cshtml page under Views/Xyz folder</h2>
+
+@*<h2>Course Title : @Model.course.CourseName</h2>*@
+
+@foreach (var item in Model) { 
+<h2>Student Name : @item.FirstName @item.LastName </h2>
+}
